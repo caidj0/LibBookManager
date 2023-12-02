@@ -1,5 +1,5 @@
-#ifndef myLibType
-#define myLibType
+#ifndef MYLibType
+#define MYLibType
 #include <string>
 
 /*
@@ -26,13 +26,20 @@ public:
 /*
 用户类
 name: 用户名
-pwd: 用户密码
+account: 账号
+pwd: 用户密码（加密后的）
+type: 用户类型
 */
 class User{
 public:
+    enum UserType{
+        None,Student,Teacher,Error //未登录，学生，老师，错误（找不到）
+    };
     std::string name;
-    std::string pwd;
+    std::string account;
+    unsigned int pwd;
+    UserType type;
     User(){};
-    User(std::string name,std::string pwd):name(name),pwd(pwd){};
+    User(std::string name,std::string account,unsigned int pwd,UserType type):name(name),account(account),pwd(pwd),type(type){};
 };
 #endif
