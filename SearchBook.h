@@ -9,7 +9,7 @@ class SearchBook
     public:
         SearchBook();
         virtual ~SearchBook();
-        void findbook();
+        vector<Book> findbook(string name,string author,string publisher,string categoryNumber)
         bool comparison(string sentence1,string sentence2);
         bool Judgement(unsigned char c);
 };
