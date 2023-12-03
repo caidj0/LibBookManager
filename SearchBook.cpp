@@ -64,25 +64,13 @@ bool SearchBook::comparison(string sentence1,string sentence2)//字符比较函数，无
     }
 }
 
-void SearchBook::findbook(Book book[])//关键词搜索书籍函数
+vector<Book> SearchBook::findbook(string name,string author,string publisher,string categoryNumber)//关键词搜索书籍函数
 {
-    Book* books=book;
-    string name="\0";
-    string author="\0";
-    string publisher="\0";
-    string categoryNumber="\0";
-    cout<<"请输入书名:";
-    getline(cin,name);
-    if(name=="/") name="\0";
-    cout<<"请输入作者:";
-    getline(cin,author);
-    if(author=="/") author="\0";
-    cout<<"请输入类别号:";
-    getline(cin,categoryNumber);
-    if(categoryNumber=="/") categoryNumber="\0";
-    cout<<"请输入出版社:";
-    getline(cin,publisher);
-    if(publisher=="/") publisher="\0";
+    vector<Book> findbooks;
+    if(name.empty()==1) name="\0";
+    if(author.empty()==1) author="\0";
+    if(categoryNumber.empty()==1) categoryNumber="\0";
+    if(publisher.empty()==1) publisher="\0";
     int i=0;
     int k=0;
     for(i=0;i<books.size();i++)
@@ -93,9 +81,10 @@ void SearchBook::findbook(Book book[])//关键词搜索书籍函数
         if(comparison(categoryNumber,books[i].categoryNumber)==true) k++;
         if(k==4)
            {
-                cout<<"《"<<books[i].name<<"》 "<<books[i].author<<' '<<books[i].categoryNumber<<' '<<books[i].publisher<<endl;
+                findbooks.push_back(books[i]);
                 k=0;
            }
         else k=0;
     }
+    return findbooks;
 }
