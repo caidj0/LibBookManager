@@ -64,20 +64,25 @@ bool SearchBook::comparison(string sentence1,string sentence2)//字符比较函数，无
     }
 }
 
-void SearchBook::findbook()//关键词搜索书籍函数
+void SearchBook::findbook(Book book[])//关键词搜索书籍函数
 {
+    Book* books=book;
     string name="\0";
     string author="\0";
     string publisher="\0";
     string categoryNumber="\0";
     cout<<"请输入书名:";
-    cin>>name;
+    getline(cin,name);
+    if(name=="/") name="\0";
     cout<<"请输入作者:";
-    cin>>author;
+    getline(cin,author);
+    if(author=="/") author="\0";
     cout<<"请输入类别号:";
-    cin>>categoryNumber;
+    getline(cin,categoryNumber);
+    if(categoryNumber=="/") categoryNumber="\0";
     cout<<"请输入出版社:";
-    cin>>publisher;
+    getline(cin,publisher);
+    if(publisher=="/") publisher="\0";
     int i=0;
     int k=0;
     for(i=0;i<books.size();i++)
