@@ -11,18 +11,8 @@ using namespace std;
 
 extern vector<Book> books;
 
-SearchBook::SearchBook()
-{
 
-}
-
-SearchBook::~SearchBook()
-{
-
-}
-
-
-bool SearchBook::Judgement(unsigned char c)//汉字判断函数，无需调用
+bool Lib::Judgement(unsigned char c)//汉字判断函数，无需调用
 {
     if(c>0x80)
         return true;
@@ -30,7 +20,7 @@ bool SearchBook::Judgement(unsigned char c)//汉字判断函数，无需调用
         return false;
 }
 
-bool comparison(string sentence1,string sentence2)
+bool Lib::comparison(string sentence1,string sentence2)
 {
     char* p=&sentence1[0];
     int a=-1;
@@ -43,7 +33,7 @@ bool comparison(string sentence1,string sentence2)
     {
         for(i=0;sentence1[i]!='\0';i++)
         {
-            flag=Judgement(sentence1[i]);
+            flag=Lib::Judgement(sentence1[i]);
             if(flag==true)
             {
                 string str=sentence1.substr(i,2);
@@ -67,7 +57,7 @@ bool comparison(string sentence1,string sentence2)
     }
 }
 
-vector<Book> SearchBook::findbook(string name,string author,string publisher,string categoryNumber)//关键词搜索书籍函数
+vector<Book> Lib::findbook(string name,string author,string publisher,string categoryNumber)//关键词搜索书籍函数
 {
     vector<Book> findbooks;
     if(name.empty()==1) name="\0";
@@ -78,10 +68,10 @@ vector<Book> SearchBook::findbook(string name,string author,string publisher,str
     int k=0;
     for(i=0;i<books.size();i++)
     {
-        if(comparison(name,books[i].name)==true) k++;
-        if(comparison(author,books[i].author)==true) k++;
-        if(comparison(publisher,books[i].publisher)==true) k++;
-        if(comparison(categoryNumber,books[i].categoryNumber)==true) k++;
+        if(Lib::comparison(name,books[i].name)==true) k++;
+        if(Lib::comparison(author,books[i].author)==true) k++;
+        if(Lib::comparison(publisher,books[i].publisher)==true) k++;
+        if(Lib::comparison(categoryNumber,books[i].categoryNumber)==true) k++;
         if(k==4)
            {
                 findbooks.push_back(books[i]);
