@@ -4,6 +4,7 @@
 #include <vector>
 #include <algorithm>
 #include <cstring>
+#include <string>
 #include "myLibType.h"
 
 using namespace std;
@@ -29,7 +30,7 @@ bool SearchBook::Judgement(unsigned char c)//汉字判断函数，无需调用
         return false;
 }
 
-bool SearchBook::comparison(string sentence1,string sentence2)//字符比较函数，无需调用
+bool comparison(string sentence1,string sentence2)
 {
     char* p=&sentence1[0];
     int a=-1;
@@ -45,18 +46,20 @@ bool SearchBook::comparison(string sentence1,string sentence2)//字符比较函数，无
             flag=Judgement(sentence1[i]);
             if(flag==true)
             {
-                a=sentence2.find(substr(sentence1(i,2));
+                string str=sentence1.substr(i,2);
+                a=sentence2.find(str);
                 if(a==-1)
                 {
-                    compare=false;break;
+                    compare=false;
                 }
+                i++;
             }
             else
             {
-                a=sentence2.find(sentence[i]);
+                a=sentence2.find(sentence1[i]);
                 if(a==-1)
                 {
-                    compare=false;break;
+                    compare=false;
                 }
             }
         }
