@@ -16,12 +16,21 @@ class bookmanagerui : public QMainWindow
 
 public:
     bookmanagerui(QWidget *parent = nullptr);
+    void closeEvent(QCloseEvent * event);
     ~bookmanagerui();
 public slots:
     void aboutus();
     void showregist();
     void regist();
-    void regist_back();
+    void back_to_homepage();
+    void showlogin();
+    void login();
+    void showsettings();
+    void showoperate();
+    void logout();
+    void delete_user();
+    void change_username();
+    void change_password();
 
 private:
     Ui::bookmanagerui *ui;
