@@ -81,11 +81,13 @@ Book *insertfindbook (string name1)
 vector<Book> Lib::addBook(User::UserType type,std::string name,std::string author,std::string publisher,int num,bool judge){//增加书籍
     if(judge==1){
     Book book;
+    string cnum;
+    cnum=name+author+publisher;
     book.name=name;
     book.author=author;
     book.publisher=publisher;
     book.remaining=num;
-    book.categoryNumber;
+    book.categoryNumber=to_string(hash<string>()(cnum));
     books.push_back(book);
     }
     else{
