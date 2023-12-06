@@ -12,7 +12,7 @@
 6、综合类:C
 */
 namespace Lib{
-    std::vector<Book> addBook(User::UserType type,std::string name,std::string author,std::string publisher,int num);
+    std::vector<Book> addBook(User::UserType type,std::string name,std::string author,std::string publisher,int num,bool judge);//增加书籍前，判断是新的还是老的
     void disp();
     void borrowBook(std::string name);
     void returnBook(std::string name);
