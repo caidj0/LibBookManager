@@ -102,3 +102,18 @@ void Lib::disp(){//显示全部书籍
     cout<<books[i].name<<" "<<books[i].author<<" "<<books[i].publisher<<" "<<books[i].remaining<<" "<<books[i].categoryNumber<<endl;
     }
 };
+
+void Lib::borrowBook(string name) {
+
+
+}
+
+void Lib::returnBook(string name) {
+
+
+}
+
+vector<Book> deleteBook(User::UserType type, std::string categoryNumber) {
+
+
+}
