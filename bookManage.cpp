@@ -76,7 +76,7 @@ Book *insertfindbook (string name1,string author1,string publisher1,string categ
            }
         else k=0;
     }
-
+    return nullptr;
 }
 int insertfind (string name1,string author1,string publisher1,string categoryNumber1)
 {
@@ -100,7 +100,7 @@ int insertfind (string name1,string author1,string publisher1,string categoryNum
            }
         else k=0;
     }
-
+    return -1;
 }
 bool insertjudgebook(string name1,string author1,string publisher1,string categoryNumber1){
     string name=name1;
@@ -142,16 +142,15 @@ int Lib::addBook(User::UserType type,std::string name,std::string author,std::st
     return 1;
     }
     else{//老书
-    Book *book=insertfindbook(name,'\0','\0','\0');
+    Book *book=insertfindbook(name,"","","");
     book->remaining+=num;
         return 1;
     }
+    return -1;
 }
 
-void Lib::dispAll(){//显示全部书籍
-    for(int i=0;i<books.size();i++){
-    cout<<books[i].name<<" "<<books[i].author<<" "<<books[i].publisher<<" "<<books[i].remaining<<" "<<books[i].categoryNumber<<endl;
-    }
+vector<Book> Lib::dispAll(){//显示全部书籍
+    return books;
 };
 
 void Lib::disp(int i){//显示某种书籍
@@ -187,7 +186,7 @@ void Lib::borrowBook(string name1,int numBook) {
     else{
         string cnum;
         cin>>cnum;
-        Book *book=insertfindbook('\0','\0','\0',cnum);
+        Book *book=insertfindbook("","","",cnum);
         book->remaining=(numBook<book->remaining?(book->remaining-numBook):0);//如果借书的数量超过所剩的书数量，则只允许借出最多的书
         cout<<"借书成功！"<<endl;
     }
@@ -197,11 +196,11 @@ void Lib::borrowBook(string name1,int numBook) {
 }
 
 void Lib::returnBook(string name,int numBook) {
-    if(insertjudgebook(name,'\0','\0','\0')!=1){
+    if(insertjudgebook(name,"","","")!=1){
         cout<<"查无此书"<<endl;
     }
     else{
-        Book *book=insertfindbook(name,'\0','\0','\0');
+        Book *book=insertfindbook(name,"","","");
         book->remaining+=numBook;
         cout<<"还书成功！"<<endl;
     }
@@ -210,8 +209,8 @@ void Lib::returnBook(string name,int numBook) {
 
 int Lib::deleteBook(User user, std::string categoryNumber1) {
      if(user.type==User::UserType::Teacher){
-         if(insertjudgebook('\0','\0','\0',categoryNumber1)==1){
-            int k=insertfind('\0','\0','\0',categoryNumber1);
+         if(insertjudgebook("","","",categoryNumber1)==1){
+            int k=insertfind("","","",categoryNumber1);
             books.erase(books.begin()+k);
             return 1;
         }
@@ -224,6 +223,6 @@ int Lib::deleteBook(User user, std::string categoryNumber1) {
         cout<<"您没有权限！"<<endl;
         return 1;
      }
-    
+     return -1;
 
 }
