@@ -12,10 +12,11 @@
 6、综合类:C
 */
 namespace Lib{
-    std::vector<Book> addBook(User::UserType type,std::string name,std::string author,std::string publisher,int num,bool judge);//增加书籍前，判断是新的还是老的
-    void disp();
-    void borrowBook(std::string name);
-    void returnBook(std::string name);
-    std::vector<Book> deleteBook(User::UserType type,std::string categoryNumber);
+    int addBook(User::UserType type,std::string name,std::string author,std::string publisher,int num,bool judge);//增加书籍前，判断是新的还是老的
+    void dispAll();//显示所有书籍
+    void disp(int i);//显示某种书籍
+    void borrowBook(std::string name1,int numBook/*借书的数量*/);//借书
+    void returnBook(std::string name,int numBook/*还书的数量*/);
+    int deleteBook(User user,std::string categoryNumber1);
 }
 #endif//BOOKMANAGE_H
