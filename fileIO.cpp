@@ -86,7 +86,7 @@ int Lib::saveTo(string path)
             out << "BOOK" << "\n";
             for(auto x: books)
             {
-                out << x.name + "\n" + x.author + "\n" + x.publisher + "\n" + x.categoryNumber + "\n" + to_string(x.remaining) + "\n";
+                out << x.name + "\n" + x.author +  "\n" + x.publisher +  "\n" + x.categoryNumber +  "\n" + to_string(x.remaining) +  "\n";
             }
             out.close();
         } catch(...)

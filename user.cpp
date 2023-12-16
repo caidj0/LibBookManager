@@ -15,7 +15,9 @@ int Lib::createUser(std::string name, std::string account, std::string pwd, User
     users[account] = User{name,account,BKDRHash(pwd.c_str()),type};
     return 0;
 }
-
+bool Lib::exist_user(std::string account){
+    return users.count(account);
+}
 User::UserType Lib::login(std::string account, std::string pwd)
 {
     if(users.count(account) && users[account].pwd == BKDRHash(pwd.c_str()))

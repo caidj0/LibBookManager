@@ -1,18 +1,13 @@
 #include "SearchBook.h"
-#include <map>
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <cstring>
-#include <string>
+#include<bits/stdc++.h>
 #include "myLibType.h"
-
+#include<Qstring>
 using namespace std;
 
 extern vector<Book> books;
+extern vector<Book> view_now;
 
-
-bool Lib::Judgement(unsigned char c)//汉字判断函数，无需调用
+bool Lib::Judgement(unsigned char c)
 {
     if(c>0x80)
         return true;
@@ -20,58 +15,37 @@ bool Lib::Judgement(unsigned char c)//汉字判断函数，无需调用
         return false;
 }
 
-bool Lib::comparison(string sentence1,string sentence2)
+bool Lib::comparison(wstring sentence1,wstring sentence2)
 {
-    char* p=&sentence1[0];
     int a=-1;
-    int i=0;
-    int times=0;
-    bool flag=true;
-    bool compare=true;
-    if(sentence1=="\0") return true;
+    bool compare=0;
+    if(sentence1.empty()) return true;
     else
     {
-        for(i=0;sentence1[i]!='\0';i++)
+        for(auto wc:sentence1)
         {
-            flag=Lib::Judgement(sentence1[i]);
-            if(flag==true)
+            a=sentence2.find(wc);
+            if(a!=-1)
             {
-                string str=sentence1.substr(i,2);
-                a=sentence2.find(str);
-                if(a==-1)
-                {
-                    compare=false;
-                }
-                i++;
-            }
-            else
-            {
-                a=sentence2.find(sentence1[i]);
-                if(a==-1)
-                {
-                    compare=false;
-                }
+                compare=1;
+                break;
             }
         }
         return compare;
     }
 }
 
-vector<Book> Lib::findbook(string name,string author,string publisher,string categoryNumber)//关键词搜索书籍函数
+vector<Book> Lib::findbook(wstring name,wstring author,wstring publisher,wstring categoryNumber)
 {
     vector<Book> findbooks;
-    if(name.empty()==1) name="\0";
-    if(author.empty()==1) author="\0";
-    if(categoryNumber.empty()==1) categoryNumber="\0";
-    if(publisher.empty()==1) publisher="\0";
     int i=0;
     int k=0;
     for(i=0;i<books.size();i++)
     {
-        if(Lib::comparison(name,books[i].name)==true) k++;
-        if(Lib::comparison(author,books[i].author)==true) k++;
-        if(Lib::comparison(publisher,books[i].publisher)==true) k++;
-        if(Lib::comparison(categoryNumber,books[i].categoryNumber)==true) k++;
+        if(Lib::comparison(name,Lib::String2Wstring(books[i].name))==true) k++;
+        if(Lib::comparison(author,Lib::String2Wstring(books[i].author))==true) k++;
+        if(Lib::comparison(publisher,Lib::String2Wstring(books[i].publisher))==true) k++;
+        if(Lib::comparison(categoryNumber,Lib::String2Wstring(books[i].categoryNumber))==true) k++;
         if(k==4)
            {
                 findbooks.push_back(books[i]);
@@ -79,5 +53,19 @@ vector<Book> Lib::findbook(string name,string author,string publisher,string cat
            }
         else k=0;
     }
-    return findbooks;
+    view_now=findbooks;
+    return view_now;
+}
+
+std::wstring Lib::String2Wstring(std::string str)
+{
+    QString qs=QString::fromStdString(str);
+    std::wstring res=qs.toStdWString();
+    return res;
+}
+
+std::string Lib::Wstring2String(std::wstring wstr){
+    QString qs=QString::fromStdWString(wstr);
+    std::string res=qs.toStdString();
+    return res;
 }

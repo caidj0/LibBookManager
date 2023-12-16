@@ -6,9 +6,11 @@
 
 namespace Lib {
 
-        std::vector<Book> findbook(std::string name,std::string author,std::string publisher,std::string categoryNumber);
-        bool comparison(std::string sentence1,std::string sentence2);
+std::vector<Book> findbook(std::wstring name,std::wstring author,std::wstring publisher,std::wstring categoryNumber);
+        bool comparison(std::wstring sentence1,std::wstring sentence2);
         bool Judgement(unsigned char c);
+        std::wstring String2Wstring(std::string str);
+        std::string Wstring2String(std::wstring wstr);
 }
 
 #endif // SEARCHBOOK_H

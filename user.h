@@ -19,6 +19,7 @@ int createUser(std::string name,std::string account,std::string pwd,User::UserTy
 */
 User::UserType login(std::string account,std::string pwd);
 
+bool exist_user(std::string account);
 
 void modifyName(std::string new_name);
 
