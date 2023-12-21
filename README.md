@@ -19,13 +19,13 @@ c++版本 std14
 - [x] 删除书籍
 
 ### 书籍搜索（SearchBook.*）
-- [x] 输入搜索内容，返回Book数组
+- [x] 输入搜索内容（模糊匹配），返回Book数组
 
 
 ## 额外要求
 ### 文件存储（fileIO.*）
 - [x] 读取文件，返回一个（或者储存到全局变量）用户列表（vector/数组指针），书籍列表（vector/数组指针存到了main里的book）
-- [x] 将用户列表，书籍列表储存到文件 save read
+- [x] 将用户列表，书籍列表储存到文件（data.txt） save() read()
 
 ### 图形界面（bookmanagerui.*）
 - [x] 使用Qt创建图形界面
